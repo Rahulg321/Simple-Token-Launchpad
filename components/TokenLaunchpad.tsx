@@ -12,14 +12,9 @@ import { useToast } from '@/hooks/use-toast';
 const TokenLaunchpad = () => {
 
   const wallet = useWallet()
-
   const { toast } = useToast()
-
   // connection to the RPC
   const { connection } = useConnection()
-
-
-
   const [isPending, startTransition] = useTransition()
   const [formData, setFormData] = useState({
     name: '',
@@ -85,12 +80,13 @@ const TokenLaunchpad = () => {
 
         transaction.feePayer = wallet.publicKey!
 
-
         // since we dont have the end users private key we will partially sign the transactions ourselfs using the mint keypair
         transaction.partialSign(keypair);
 
-        // ask phantom for signing the transaction
+        // ask phantom for signing the transaction with the connected wallets private key
         let response = await wallet.sendTransaction(transaction, connection);
+
+
         console.log("phantom response", response);
         toast({
           title:"Successfully created token",
