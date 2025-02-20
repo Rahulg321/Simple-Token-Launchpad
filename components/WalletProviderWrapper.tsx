@@ -11,7 +11,6 @@ import {
 } from "@solana/wallet-adapter-react-ui";
 import "@solana/wallet-adapter-react-ui/styles.css";
 
-
 export default function WalletProviderWrapper({
   children,
 }: {
@@ -20,18 +19,17 @@ export default function WalletProviderWrapper({
   return (
     <ConnectionProvider endpoint="https://api.devnet.solana.com">
       <WalletProvider wallets={[]} autoConnect>
-        <WalletModalProvider>
+        {/* <WalletModalProvider>
           <div
             style={{
               display: "flex",
-              justifyContent: "space-between",
               padding: 20,
             }}
           >
             <WalletMultiButton />
             <WalletDisconnectButton />
           </div>
-        </WalletModalProvider>
+        </WalletModalProvider> */}
         {children}
       </WalletProvider>
     </ConnectionProvider>
